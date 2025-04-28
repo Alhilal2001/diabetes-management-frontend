@@ -1,0 +1,22 @@
+/* src/pages/ActivityPages/ActivityFormPage.css */
+.activity-form-page {
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .activity-form-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  .activity-form-page input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+  .activity-form-page button {
+    padding: 0.8rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

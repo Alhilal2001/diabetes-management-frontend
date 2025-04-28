@@ -1,0 +1,15 @@
+/* src/pages/ActivityPages/ActivityListPage.css */
+.activity-list-page {
+    padding: 2rem;
+  }
+  .activity-list-page ul {
+    list-style: none;
+    padding: 0;
+  }
+  .activity-list-page li {
+    background: #e9ecef;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  

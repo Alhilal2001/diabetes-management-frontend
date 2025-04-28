@@ -1,0 +1,22 @@
+/* src/pages/MealPages/MealFormPage.css */
+.meal-form-page {
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .meal-form-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  .meal-form-page input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+  .meal-form-page button {
+    padding: 0.8rem;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+  
