@@ -1,0 +1,22 @@
+/* src/pages/SignupPage/SignupPage.css */
+.signup-page {
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .signup-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  .signup-page input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+  .signup-page button {
+    padding: 0.8rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

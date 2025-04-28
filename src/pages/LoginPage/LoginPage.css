@@ -1,0 +1,22 @@
+/* src/pages/LoginPage/LoginPage.css */
+.login-page {
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .login-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  .login-page input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+  .login-page button {
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
