@@ -1,21 +1,29 @@
 // src/pages/MealPages/MealFormPage.jsx
 import { useState } from 'react';
-import { createMeal } from '../../utilities/meals-api';  
-import { useNavigate } from 'react-router-dom';           
+import { createMeal } from '../../utilities/meals-api';
+import { useNavigate } from 'react-router-dom';
 import './MealFormPage.css';
 
 function MealFormPage() {
   const [mealName, setMealName] = useState('');
   const [mealCalories, setMealCalories] = useState('');
+  const [mealCarbs, setMealCarbs] = useState(''); // ⬅️ أضف حقل الكربوهيدرات
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await createMeal({ name: mealName, calories: mealCalories }, token);
+      await createMeal(
+        {
+          name: mealName,
+          calories: mealCalories,
+          carbs: mealCarbs, // ⬅️ أضف هذا للحل
+        },
+        token
+      );
       alert('Meal Added Successfully');
-      navigate('/meals');  
+      navigate('/meals');
     } catch (err) {
       console.error(err);
       alert('Failed to Add Meal');
@@ -38,6 +46,13 @@ function MealFormPage() {
           value={mealCalories}
           onChange={(e) => setMealCalories(e.target.value)}
           placeholder="Calories"
+          required
+        />
+        <input
+          type="number"
+          value={mealCarbs}
+          onChange={(e) => setMealCarbs(e.target.value)}
+          placeholder="Carbs (grams)"
           required
         />
         <button type="submit">Save Meal</button>

@@ -12,6 +12,7 @@ import ActivityListPage from './pages/ActivityPages/ActivityListPage';
 import ActivityFormPage from './pages/ActivityPages/ActivityFormPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import OverviewPage from './pages/Dashboard/OverviewPage';
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="*" element={<LoginPage />} />
+        <Route path="/overview" element={<OverviewPage />} />
       </Routes>
     </>
   );

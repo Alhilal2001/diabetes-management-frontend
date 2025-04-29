@@ -1,18 +1,20 @@
 // src/pages/GlucosePages/GlucoseFormPage.jsx
 import { useState } from 'react';
-import { createGlucose } from '../../utilities/glucose-api';  // <-- صح هنا
+import { useNavigate } from 'react-router-dom';
+import { createGlucose } from '../../utilities/glucose-api';
 import './GlucoseFormPage.css';
 
 function GlucoseFormPage() {
   const [glucoseLevel, setGlucoseLevel] = useState('');
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await createGlucose({ glucose_level: glucoseLevel }, token);  // <-- وصح هنا
+      await createGlucose({ glucose_level: glucoseLevel }, token);
       alert('Glucose Entry Added');
-      window.location.href = '/glucose';  // توجيه بعد الإضافة
+      navigate('/glucose');
     } catch (err) {
       alert('Failed to Add Glucose Entry');
     }

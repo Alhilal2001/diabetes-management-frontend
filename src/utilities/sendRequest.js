@@ -1,14 +1,25 @@
-const BASE_URL = 'http://localhost:8000'; // بدون سلاش هنا
+// src/utilities/sendRequest.js
+const BASE_URL = 'http://localhost:8000';
 
-export default async function sendRequest(endpoint, method = 'GET', payload = null) {
-  const options = { method, headers: {} };
-  if (payload) {
-    options.headers['Content-Type'] = 'application/json';
-    options.body = JSON.stringify(payload);
+export default async function sendRequest(endpoint, method = 'GET', payload = null, token = null) {
+  const headers = {};
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
+  if (payload) {
+    headers['Content-Type'] = 'application/json';
+  }
+
+  const options = {
+    method,
+    headers,
+    body: payload ? JSON.stringify(payload) : undefined
+  };
+
   const res = await fetch(`${BASE_URL}${endpoint}`, options);
-  
+
   if (!res.ok) {
     const errorMessage = await res.text();
     throw new Error(`Bad Request: ${res.status}\n${errorMessage}`);

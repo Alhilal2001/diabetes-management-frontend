@@ -1,16 +1,92 @@
-/* src/pages/Dashboard/Dashboard.css */
+
 .dashboard {
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .dashboard h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .dashboard canvas {
-    margin-top: 2rem;
-    max-width: 700px;
-  }
-  
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+
+.dashboard-header h2 {
+  margin: 0;
+}
+
+
+.add-button {
+  background-color: #4CAF50; 
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.add-button:hover {
+  background-color: #45a049;
+}
+
+
+.no-data,
+.error-message {
+  color: #555;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+
+.alert-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 300px; 
+  margin: 0 auto 20px auto;
+}
+
+
+.stats-summary {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  flex-wrap: wrap;
+}
+
+
+.stat-item {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.stat-item strong {
+  font-size: 16px;
+  color: #333;
+}
+
+.dashboard-header .action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard-header .action-buttons button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

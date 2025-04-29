@@ -1,0 +1,35 @@
+.overview-page {
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  
+  .charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .chart-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .chart-box h2 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .alert-box {
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
