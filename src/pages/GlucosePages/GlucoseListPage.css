@@ -1,15 +1,10 @@
-/* src/pages/GlucosePages/GlucoseListPage.css */
-.glucose-list-page {
-    padding: 2rem;
-  }
-  .glucose-list-page ul {
-    list-style: none;
-    padding: 0;
-  }
-  .glucose-list-page li {
-    background: #f1f1f1;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-  }
-  
+.glucose-list {
+  padding: 2rem;
+}
+.glucose-list h2 {
+  margin-bottom: 1rem;
+}
+.glucose-list div {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}

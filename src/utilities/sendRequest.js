@@ -8,14 +8,14 @@ export default async function sendRequest(endpoint, method = 'GET', payload = nu
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  if (payload) {
+  if (payload && !(payload instanceof FormData)) {
     headers['Content-Type'] = 'application/json';
   }
 
   const options = {
     method,
     headers,
-    body: payload ? JSON.stringify(payload) : undefined
+    body: payload ? (payload instanceof FormData ? payload : JSON.stringify(payload)) : undefined
   };
 
   const res = await fetch(`${BASE_URL}${endpoint}`, options);

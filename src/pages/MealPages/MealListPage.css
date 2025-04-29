@@ -1,15 +1,10 @@
-/* src/pages/MealPages/MealListPage.css */
-.meal-list-page {
-    padding: 2rem;
-  }
-  .meal-list-page ul {
-    list-style: none;
-    padding: 0;
-  }
-  .meal-list-page li {
-    background: #f8f9fa;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-  }
-  
+.meal-list {
+  padding: 2rem;
+}
+.meal-list h2 {
+  margin-bottom: 1rem;
+}
+.meal-list div {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}

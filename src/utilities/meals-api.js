@@ -2,14 +2,14 @@ import sendRequest from './sendRequest';
 
 const BASE_URL = '/api/meals';
 
-export function getAllMeals() {
-  return sendRequest(`${BASE_URL}/`);
+export function getAllMeals(token) {
+  return sendRequest(`${BASE_URL}/`, 'GET', null, token);
 }
 
-export function createMeal(mealData) {
-  return sendRequest(`${BASE_URL}/`, 'POST', mealData);
+export function createMeal(mealData, token) {
+  return sendRequest(`${BASE_URL}/`, 'POST', mealData, token);
 }
 
-export function deleteMeal(id) {
-  return sendRequest(`${BASE_URL}/${id}/`, 'DELETE');
+export function deleteMeal(id, token) {
+  return sendRequest(`${BASE_URL}/${id}/`, 'DELETE', null, token);
 }

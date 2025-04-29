@@ -10,6 +10,7 @@ export function login(credentials) {
   return sendRequest(`${BASE_URL}/login/`, 'POST', credentials);
 }
 
-export function checkToken() {
-  return sendRequest(`${BASE_URL}/check-token/`);
+// فقط إذا كنت تستخدم endpoint مخصص للتحقق من التوكن:
+export function checkToken(token) {
+  return sendRequest(`${BASE_URL}/check-token/`, 'GET', null, token);
 }

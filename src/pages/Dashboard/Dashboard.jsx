@@ -105,9 +105,9 @@ function Dashboard() {
       <div className="dashboard-header">
         <h2>Dashboard</h2>
         <div className="action-buttons">
-          <button onClick={() => navigate('/glucose/new')}>Add Glucose</button>
-          <button onClick={() => navigate('/meals/new')}>Add Meal</button>
-          <button onClick={() => navigate('/activities/new')}>Add Activity</button>
+          <button className="add-button" onClick={() => navigate('/glucose/new')}>Add Glucose</button>
+          <button className="add-button" onClick={() => navigate('/meals/new')}>Add Meal</button>
+          <button className="add-button" onClick={() => navigate('/activities/new')}>Add Activity</button>
         </div>
       </div>
 
@@ -119,7 +119,9 @@ function Dashboard() {
 
       {!loading && !error && glucoseData.length > 0 && (
         <>
-          {alertMessage && <p className="alert-message">{alertMessage}</p>}
+          {alertMessage && (
+            <p className="alert-message">{alertMessage}</p>
+          )}
 
           <div className="chart-container">
             <Line data={chartData} options={chartOptions} />
@@ -127,13 +129,9 @@ function Dashboard() {
 
           <div className="stats-summary">
             <div className="stat-item">Total Readings: <strong>{totalReadings}</strong></div>
-            <div className="stat-item">Max Reading: <strong>{maxReading}</strong></div>
-            <div className="stat-item">Min Reading: <strong>{minReading}</strong></div>
-            <div className="stat-item">Average: <strong>{avgReading.toFixed(1)}</strong></div>
             <div className="stat-item">
-             Average: <strong>{!isNaN(avgReading) ? avgReading.toFixed(1) : 'N/A'}</strong>
+              Average: <strong>{!isNaN(avgReading) ? avgReading.toFixed(1) : 'N/A'}</strong>
             </div>
-
           </div>
         </>
       )}

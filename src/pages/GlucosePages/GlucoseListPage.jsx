@@ -1,15 +1,32 @@
-// src/pages/GlucosePages/GlucoseListPage.jsx
+import { useEffect, useState } from 'react';
+import { getAllGlucose } from '../../utilities/glucose-api';
 import './GlucoseListPage.css';
 
 function GlucoseListPage() {
+  const [glucoseList, setGlucoseList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      const data = await getAllGlucose(token);
+      setGlucoseList(data || []);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="glucose-list-page">
+    <div className="glucose-list">
       <h2>Glucose Entries</h2>
-      {/* لاحقاً نربطها مع بيانات */}
-      <ul>
-        <li>120 mg/dL - 2025-04-28</li>
-        <li>140 mg/dL - 2025-04-27</li>
-      </ul>
+      {glucoseList.length === 0 ? (
+        <p>No glucose entries available.</p>
+      ) : (
+        glucoseList.map((entry, index) => (
+          <div key={index}>
+            {entry.value} mg/dL - {new Date(entry.timestamp).toLocaleDateString()}
+          </div>
+        
+        ))
+      )}
     </div>
   );
 }
