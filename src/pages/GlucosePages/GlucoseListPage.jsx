@@ -22,7 +22,7 @@ function GlucoseListPage() {
       ) : (
         glucoseList.map((entry, index) => (
           <div key={index}>
-            {entry.value} mg/dL - {new Date(entry.timestamp).toLocaleDateString()}
+            {entry.glucose_level} mg/dL - {new Date(entry.timestamp).toLocaleDateString()}
           </div>
         
         ))

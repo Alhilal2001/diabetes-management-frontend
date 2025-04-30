@@ -56,7 +56,7 @@ function Dashboard() {
     datasets: [
       {
         label: 'Blood Glucose Level',
-        data: glucoseData.map(entry => entry.value),
+        data: glucoseData.map(entry => entry.glucose_level),
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -92,7 +92,7 @@ function Dashboard() {
 
   let alertMessage = '';
   if (glucoseData.length > 0) {
-    const latestValue = glucoseData[glucoseData.length - 1].value;
+    const latestValue = glucoseData[glucoseData.length - 1].glucose_level;
     if (latestValue > 180) {
       alertMessage = '⚠️ Alert: High blood sugar (above 180 mg/dL)';
     } else if (latestValue < 70) {
