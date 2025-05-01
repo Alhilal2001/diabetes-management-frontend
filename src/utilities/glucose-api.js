@@ -18,3 +18,12 @@ export function createGlucose(glucoseData, token) {
 export function deleteGlucose(id, token) {
   return sendRequest(`${BASE_URL}/${id}/`, 'DELETE', null, token);
 }
+
+export function getGlucoseById(id, token) {
+  return sendRequest(`/api/glucose/${id}/`, 'GET', null, token);
+}
+
+export function updateGlucose(id, data, token) {
+  return sendRequest(`/api/glucose/${id}/`, 'PUT', data, token);
+}
+

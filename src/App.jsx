@@ -75,6 +75,24 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+            path="/meals/:id/edit"
+           element={
+           <ProtectedRoute>
+              <MealFormPage />
+              </ProtectedRoute>
+
+           }
+        />
+        <Route
+          path="/glucose/edit/:id"
+          element={<ProtectedRoute><GlucoseFormPage /></ProtectedRoute>}
+        />
+        <Route
+          path="/activities/:id/edit"
+          element={<ProtectedRoute><ActivityFormPage /></ProtectedRoute>}
+        />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="*" element={<LoginPage />} />

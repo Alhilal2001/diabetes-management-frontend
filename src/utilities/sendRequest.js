@@ -25,5 +25,10 @@ export default async function sendRequest(endpoint, method = 'GET', payload = nu
     throw new Error(`Bad Request: ${res.status}\n${errorMessage}`);
   }
 
+  const contentType = res.headers.get('content-type');
+if (contentType && contentType.includes('application/json')) {
   return res.json();
+} else {
+  return null;
+}
 }

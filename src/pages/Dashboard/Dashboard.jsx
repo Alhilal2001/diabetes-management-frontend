@@ -1,3 +1,4 @@
+// src/pages/Dashboard/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -12,126 +13,75 @@ import {
 } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
 import { getAllGlucose } from '../../utilities/glucose-api';
+import { getAllMeals } from '../../utilities/meals-api';
+import { getAllActivities } from '../../utilities/activities-api';
 import './Dashboard.css';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Dashboard() {
   const [glucoseData, setGlucoseData] = useState([]);
+  const [mealData, setMealData] = useState([]);
+  const [activityData, setActivityData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchGlucoseData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const token = localStorage.getItem('token');
-        const data = await getAllGlucose(token);
-        setGlucoseData(data || []);
-      } catch (err) {
-        console.error('Error fetching glucose data:', err);
-        setError('An error occurred while fetching data.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGlucoseData();
+    async function fetchData() {
+      const token = localStorage.getItem('token');
+      const [glucose, meals, activities] = await Promise.all([
+        getAllGlucose(token),
+        getAllMeals(token),
+        getAllActivities(token),
+      ]);
+      setGlucoseData(glucose || []);
+      setMealData(meals || []);
+      setActivityData(activities || []);
+      setLoading(false);
+    }
+    fetchData();
   }, []);
 
-  const chartData = {
-    labels: glucoseData.map(entry =>
-      entry.timestamp ? new Date(entry.timestamp).toLocaleString() : ''
-    ),
-    datasets: [
-      {
-        label: 'Blood Glucose Level',
-        data: glucoseData.map(entry => entry.glucose_level),
-        fill: false,
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        pointBorderColor: 'rgba(75,192,192,1)',
-        pointBackgroundColor: '#fff',
-        tension: 0.2
-      }
-    ]
-  };
+  const makeChartData = (data, label, key) => ({
+    labels: data.map(e => new Date(e.timestamp).toLocaleDateString()),
+    datasets: [{
+      label,
+      data: data.map(e => e[key]),
+      fill: false,
+      borderColor: 'rgba(75,192,192,1)',
+      tension: 0.3,
+    }]
+  });
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    },
-    plugins: {
-      legend: { display: false },
-      title: { display: false }
-    }
+    plugins: { legend: { position: 'top' } }
   };
-
-  let totalReadings = 0, maxReading = 0, minReading = 0, avgReading = 0;
-  if (glucoseData.length > 0) {
-    totalReadings = glucoseData.length;
-    const values = glucoseData.map(entry => entry.value);
-    maxReading = Math.max(...values);
-    minReading = Math.min(...values);
-    avgReading = values.reduce((sum, val) => sum + val, 0) / totalReadings;
-  }
-
-  let alertMessage = '';
-  if (glucoseData.length > 0) {
-    const latestValue = glucoseData[glucoseData.length - 1].glucose_level;
-    if (latestValue > 180) {
-      alertMessage = '⚠️ Alert: High blood sugar (above 180 mg/dL)';
-    } else if (latestValue < 70) {
-      alertMessage = '⚠️ Alert: Low blood sugar (below 70 mg/dL)';
-    }
-  }
 
   return (
     <div className="dashboard">
-      <div className="dashboard-header">
-        <h2>Dashboard</h2>
-        <div className="action-buttons">
-          <button className="add-button" onClick={() => navigate('/glucose/new')}>Add Glucose</button>
-          <button className="add-button" onClick={() => navigate('/meals/new')}>Add Meal</button>
-          <button className="add-button" onClick={() => navigate('/activities/new')}>Add Activity</button>
-        </div>
+      <h2>Dashboard</h2>
+      <div className="action-buttons">
+        <button className="add-button" onClick={() => navigate('/glucose/new')}>Add Glucose</button>
+        <button className="add-button" onClick={() => navigate('/meals/new')}>Add Meal</button>
+        <button className="add-button" onClick={() => navigate('/activities/new')}>Add Activity</button>
       </div>
 
-      {loading && <p>Loading data...</p>}
-      {error && <p className="error-message">{error}</p>}
-      {!loading && !error && glucoseData.length === 0 && (
-        <p className="no-data">No data available.</p>
-      )}
-
-      {!loading && !error && glucoseData.length > 0 && (
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
         <>
-          {alertMessage && (
-            <p className="alert-message">{alertMessage}</p>
-          )}
-
           <div className="chart-container">
-            <Line data={chartData} options={chartOptions} />
+            <h3>Glucose Levels</h3>
+            <Line data={makeChartData(glucoseData, "Glucose (mg/dL)", "glucose_level")} options={chartOptions} />
           </div>
-
-          <div className="stats-summary">
-            <div className="stat-item">Total Readings: <strong>{totalReadings}</strong></div>
-            <div className="stat-item">
-              Average: <strong>{!isNaN(avgReading) ? avgReading.toFixed(1) : 'N/A'}</strong>
-            </div>
+          <div className="chart-container">
+            <h3>Meals (Carbs)</h3>
+            <Line data={makeChartData(mealData, "Carbs (g)", "carbs")} options={chartOptions} />
+          </div>
+          <div className="chart-container">
+            <h3>Activities (Minutes)</h3>
+            <Line data={makeChartData(activityData, "Duration (min)", "duration")} options={chartOptions} />
           </div>
         </>
       )}

@@ -40,8 +40,8 @@ function MealListPage() {
               <td>{meal.name}</td>
               <td>{meal.carbs}</td>
               <td>
-                <button onClick={() => handleDelete(meal.id)}>Delete</button>
-                <button onClick={() => window.location.href = `/meals/${meal.id}/edit`}>Edit</button>
+                <button className="edit-btn" onClick={() => window.location.href = `/meals/${meal.id}/edit`}>Edit</button>
+                <button className="delete-btn" onClick={() => handleDelete(meal.id)}>Delete</button>
               </td>
             </tr>
           ))}

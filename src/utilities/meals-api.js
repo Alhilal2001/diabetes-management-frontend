@@ -13,3 +13,11 @@ export function createMeal(mealData, token) {
 export function deleteMeal(id, token) {
   return sendRequest(`${BASE_URL}/${id}/`, 'DELETE', null, token);
 }
+
+export function getMealById(id, token) {
+  return sendRequest(`/api/meals/${id}/`, 'GET', null, token);
+}
+
+export function updateMeal(id, data, token) {
+  return sendRequest(`/api/meals/${id}/`, 'PUT', data, token);
+}
