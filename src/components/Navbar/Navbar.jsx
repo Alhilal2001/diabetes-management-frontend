@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { getUser } from '../../utilities/users-service';
 
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const user = token ? getUser() : null;
 
   function handleLogout() {
     localStorage.removeItem('token');
@@ -16,6 +18,16 @@ function Navbar() {
       <ul className="navbar-links">
         {token && (
           <>
+            <li className="profile-link">
+              <Link to="/profile">
+                <img
+                  src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                  alt="Profile"
+                  className="avatar"
+                />
+                {user?.name || 'Profile'}
+              </Link>
+            </li>
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/glucose">Glucose</Link></li>
             <li><Link to="/meals">Meals</Link></li>

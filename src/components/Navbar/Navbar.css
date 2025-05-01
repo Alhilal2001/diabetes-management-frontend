@@ -42,3 +42,16 @@
 .navbar-links li a:hover {
   text-decoration: underline;
 }
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
