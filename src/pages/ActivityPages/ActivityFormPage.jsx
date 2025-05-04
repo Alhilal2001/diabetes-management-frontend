@@ -7,7 +7,7 @@ function ActivityFormPage() {
   const [activityName, setActivityName] = useState('');
   const [activityDuration, setActivityDuration] = useState('');
   const navigate = useNavigate();
-  const { id } = useParams(); // activityId from URL
+  const { id } = useParams(); 
 
   useEffect(() => {
     if (id) {
@@ -29,15 +29,15 @@ function ActivityFormPage() {
     try {
       if (id) {
         await updateActivity(id, payload, token);
-        alert('Activity Updated Successfully');
+        // alert('Activity Updated Successfully');
       } else {
         await createActivity(payload, token);
-        alert('Activity Added Successfully');
+        // alert('Activity Added Successfully');
       }
       navigate('/activities');
     } catch (err) {
       console.error(err);
-      alert('Failed to save activity');
+      // alert('Failed to save activity');
     }
   }
 

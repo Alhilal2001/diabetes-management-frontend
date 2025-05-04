@@ -1,0 +1,39 @@
+.about-page {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #f9fcff, #e3f2fd);
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .about-container {
+    max-width: 800px;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .about-container h1 {
+    color: #007bff;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-container h2 {
+    color: #0056b3;
+    margin-top: 1.5rem;
+  }
+  
+  .about-container ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+  
+  .thank-you {
+    margin-top: 2rem;
+    font-style: italic;
+    color: #444;
+  }
+  

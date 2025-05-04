@@ -13,10 +13,10 @@ function GlucoseFormPage() {
     const token = localStorage.getItem('token');
     try {
       await createGlucose({ glucose_level: glucoseLevel }, token);
-      alert('Glucose Entry Added');
+      // alert('Glucose Entry Added');
       navigate('/glucose');
     } catch (err) {
-      alert('Failed to Add Glucose Entry');
+      // alert('Failed to Add Glucose Entry');
     }
   }
 

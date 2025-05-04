@@ -1,13 +1,17 @@
-import { jwtDecode } from 'jwt-decode';
+import sendRequest from './sendRequest';
 
-export function getUser() {
+const BASE_URL = '/api/auth';
+
+export async function getUser() {
+  try {
     const token = localStorage.getItem('token');
-    if (!token) return null;
-    try {
-      return jwtDecode(token);
-    } catch (err) {
-      console.error('Invalid token:', err);
-      return null;
+    if (token) {
+      const response = await sendRequest(`${BASE_URL}/user/`, 'GET', null, token);
+      return response;
     }
+    return null;
+  } catch (err) {
+    console.log(err);
+    return null;
   }
-  
+}

@@ -35,15 +35,15 @@ function MealFormPage() {
     try {
       if (id) {
         await updateMeal(id, mealData, token);
-        alert('Meal updated successfully');
+        // alert('Meal updated successfully');
       } else {
         await createMeal(mealData, token);
-        alert('Meal added successfully');
+        // alert('Meal added successfully');
       }
       navigate('/meals');
     } catch (err) {
       console.error(err);
-      alert('Failed to save meal');
+      // alert('Failed to save meal');
     }
   }
 

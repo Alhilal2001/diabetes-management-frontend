@@ -14,20 +14,23 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">DiaTrack AI</div>
+      <div className="navbar-brand">
+        <Link to="/"><img src="/src/assets/icon-logo.png" alt="DiaTrack Logo" className="logo-img" /></Link>
+      </div>
+
       <ul className="navbar-links">
         {token && (
           <>
             <li className="profile-link">
-              <Link to="/profile">
-                <img
-                  src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-                  alt="Profile"
-                  className="avatar"
-                />
-                {user?.name || 'Profile'}
-              </Link>
-            </li>
+            <Link to="/profile">
+           <img
+           src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          alt="User"
+          className="avatar"
+         /> <span className="username-label">  {user?.username || 'Profile'}</span>
+         </Link>
+        </li>
+
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/glucose">Glucose</Link></li>
             <li><Link to="/meals">Meals</Link></li>
@@ -36,6 +39,7 @@ function Navbar() {
         )}
         {!token ? (
           <>
+          <li><Link to="/about">About</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/signup">Signup</Link></li>
           </>

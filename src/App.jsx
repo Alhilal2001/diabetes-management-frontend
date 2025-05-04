@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
+import HomePage from './pages/HomePage/HomePage';
+import AboutPage from './pages/AboutPage/AboutPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import GlucoseListPage from './pages/GlucosePages/GlucoseListPage';
 import GlucoseFormPage from './pages/GlucosePages/GlucoseFormPage';
@@ -14,7 +16,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import OverviewPage from './pages/Dashboard/OverviewPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import { getUser } from './utilities/users-service'; // ✅ أضف هذا
+import { getUser } from './utilities/users-service'; 
 
 
 function App() {
@@ -112,6 +114,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="*" element={<LoginPage />} />

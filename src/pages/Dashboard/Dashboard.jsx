@@ -61,6 +61,24 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <h2>Dashboard</h2>
+      {glucoseData.length > 0 && (() => {
+  const latest = glucoseData[glucoseData.length - 1];
+  if (latest.glucose_level > 180) {
+    return (
+      <p style={{ color: 'red', fontWeight: 'bold' }}>
+        ⚠️ High blood sugar alert! Glucose above 180 mg/dL
+      </p>
+    );
+  } else if (latest.glucose_level < 70) {
+    return (
+      <p style={{ color: 'orange', fontWeight: 'bold' }}>
+        ⚠️ Low blood sugar alert! Glucose below 70 mg/dL
+      </p>
+    );
+  }
+  return null;
+})()}
+
       <div className="action-buttons">
         <button className="add-button" onClick={() => navigate('/glucose/new')}>Add Glucose</button>
         <button className="add-button" onClick={() => navigate('/meals/new')}>Add Meal</button>
