@@ -1,13 +1,64 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# DiaTrack AI - Frontend
 
-Currently, two official plugins are available:
+DiaTrack AI is a full-stack diabetes management app frontend built using React and React Router. The application communicates with a Django REST API and supports full CRUD operations for glucose, meals, and activity entries.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- JWT-based user authentication
+- Glucose tracking with visual chart feedback
+- Meal and activity tracking
+- Password update support in profile page
+- Mobile-responsive design
+- Modular component architecture
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# diabetes-management-frontend
+## Technologies Used
+
+- React
+- React Router DOM
+- Vite
+- Chart.js
+- Axios
+- JWT-decode
+
+## Project Structure
+
+```
+src/
+├── components/
+├── pages/
+├── utilities/
+├── App.jsx
+├── main.jsx
+```
+
+## Routing Overview
+
+| Route              | Description                     |
+|--------------------|----------------------------------|
+| /login             | Login form                       |
+| /signup            | Signup form                      |
+| /dashboard         | Authenticated dashboard          |
+| /glucose           | View glucose entries             |
+| /glucose/new       | Add new glucose entry            |
+| /glucose/edit/:id  | Edit glucose entry               |
+| /meals             | View meals                       |
+| /meals/new         | Add new meal                     |
+| /meals/:id/edit    | Edit meal                        |
+| /activities        | View activities                  |
+| /activities/new    | Add new activity                 |
+| /activities/:id/edit| Edit activity                   |
+| /profile           | View and update user profile     |
+
+## Link to Backend Repo
+
+[Backend GitHub Repository](<your-backend-repo-link>)
+
+## IceBox Features
+
+- Blood sugar prediction using ML integration
+- Admin panel for monitoring users
+- Email reminders for glucose checks
+- Charts with filterable timelines (day, week, month)
+- Export data to CSV/PDF
+- Multi-language support
